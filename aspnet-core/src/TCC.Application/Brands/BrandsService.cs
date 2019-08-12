@@ -59,7 +59,7 @@ namespace TCC.Brands
 
         public async Task<BrandDto> GetBrandbyName(string name)
         {
-            var brand = await _brandRepository.FirstOrDefaultAsync(c => c.Name == name);
+            var brand = await _brandRepository.FirstOrDefaultAsync(c => ( c.Name == name || c.Name_SC  == name || c.Name_TC  == name));
             if(brand == null)
             {
                 return null;
