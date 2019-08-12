@@ -12,8 +12,14 @@ namespace TCC.Brands.Dto
     public class BrandDto : EntityDto
     {
         public string Name { get; set; }
+        public string Name_TC { get; set; }
+        public string Name_SC { get; set; }
         public string Description { get; set; }
+        public string Description_TC { get; set; }
+        public string Description_SC { get; set; }
         public string Url { get; set; }
+        public string Url_TC { get; set; }
+        public string Url_SC { get; set; }
         public string Logo { get; set; }
         public string CoverImage { get; set; }
     }

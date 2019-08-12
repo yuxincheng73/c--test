@@ -12,7 +12,7 @@ namespace TCC.Controllers
 {
     [Produces("application/json")]
     [ApiController]
-    [Route("api/service")]
+    [Route("api")]
     public class BrandsController : TCCControllerBase
     {
         private readonly IBrandsService _brandsService;
@@ -48,9 +48,9 @@ namespace TCC.Controllers
 
         [HttpGet]
         [Route("brand")]
-        public async Task<IActionResult> GetBrandbyName([FromQuery] string name, [FromQuery] string language_code)
+        public async Task<IActionResult> GetBrandbyName([FromQuery] string name)
         {
-            var brand = await _brandsService.GetBrandbyName(name, language_code);
+            var brand = await _brandsService.GetBrandbyName(name);
             if(brand == null)
             {
                 return NotFound();
@@ -60,41 +60,24 @@ namespace TCC.Controllers
 
         [HttpPost]
         [Route("brand")]
-        public async Task<IActionResult> CreateBrand(dynamic input)
+        public async Task<IActionResult> CreateBrand(BrandDto input)
         {
             if (input == null)
             {
                 return BadRequest();
             }
-            var brand = new BrandDto
-            {
-                Name = input.name.ToString(Formatting.None),
-                Description = input.description.ToString(Formatting.None),
-                Url = input.url,
-                Logo = input.logo,
-                CoverImage = input.coverimage
-            };
-            return Ok(await _brandsService.CreateBrand(brand));
+            return Ok(await _brandsService.CreateBrand(input));
         }
 
         [HttpPut]
         [Route("brand")]
-        public async Task<IActionResult> UpdateBrand(dynamic input)
+        public async Task<IActionResult> UpdateBrand(BrandDto input)
         {
             if (input == null)
             {
                 return NotFound();
             }
-            var brandToUpdate = new BrandDto
-            {
-                Id = (int)input.id,
-                Name = input.name.ToString(Formatting.None),
-                Description = input.description.ToString(Formatting.None),
-                Logo = input.logo.ToString(Formatting.None),
-                CoverImage = input.coverimage.ToString(Formatting.None),
-                Url = input.url.ToString(Formatting.None),
-            };
-            return Ok(await _brandsService.UpdateBrand(brandToUpdate));
+            return Ok(await _brandsService.UpdateBrand(input));
         }
 
         [HttpDelete]

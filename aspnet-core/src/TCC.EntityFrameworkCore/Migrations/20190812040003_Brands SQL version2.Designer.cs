@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TCC.EntityFrameworkCore;
 
 namespace TCC.Migrations
 {
     [DbContext(typeof(TCCDbContext))]
-    partial class TCCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190812040003_Brands SQL version2")]
+    partial class BrandsSQLversion2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -1064,8 +1066,7 @@ namespace TCC.Migrations
                     b.Property<bool>("Discoverable")
                         .HasColumnName("discoverable");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnName("is_deleted");
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<DateTime>("LaunchDate")
                         .HasColumnName("launch_date");
