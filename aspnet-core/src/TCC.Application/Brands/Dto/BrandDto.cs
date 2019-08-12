@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,7 @@ namespace TCC.Brands.Dto
         public string Url_TC { get; set; }
         public string Url_SC { get; set; }
         public string Logo { get; set; }
+        [JsonProperty("cover_image")]
         public string CoverImage { get; set; }
     }
 }
